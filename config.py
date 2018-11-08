@@ -2,6 +2,13 @@
 
 import os
 
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path, verbose=True)
+
 
 class Config:
     DEBUG = False
@@ -15,7 +22,7 @@ class DevelopmentConfig(Config):
 
 
 class TestingConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.getenv('TEST_DATABASE_URI', '')
+    SQLALCHEMY_DATABASE_URI = os.getenv('TEST_DATABASE_URI')
     TESTING = True
 
 
